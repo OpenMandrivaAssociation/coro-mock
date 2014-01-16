@@ -7,7 +7,7 @@
 Name: coro-mock
 Version: 1.0
 Release: 0.4.%{git}git.0%{?dist}
-Summary: A mock library for compiling JVM coroutine-using code on JVMs without coroutines
+Summary: Mock library for compiling JVM coroutine on JVMs without coroutines
 
 License: Public Domain
 Url: https://github.com/headius/coro-mock
