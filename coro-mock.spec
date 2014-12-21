@@ -6,9 +6,9 @@
 
 Name: coro-mock
 Version: 1.0
-Release: 0.4.%{git}git.0%{?dist}
-Summary: Mock library for compiling JVM coroutine on JVMs without coroutines
-
+Release: 0.7.%{git}git.1
+Summary: A mock library for compiling JVM coroutine-using code on JVMs
+Group: Development/Java
 License: Public Domain
 Url: https://github.com/headius/coro-mock
 Source0: https://github.com/headius/%{name}/tarball/%{git}/headius-%{name}-%{git}.tar.gz
@@ -24,7 +24,7 @@ BuildRequires: maven-install-plugin
 BuildRequires: maven-jar-plugin
 BuildRequires: maven-javadoc-plugin
 
-Requires: java
+Requires: java-headless
 Requires: jpackage-utils
 
 BuildArch: noarch
@@ -34,7 +34,7 @@ A small mock library for compiling JVM coroutine-utilizing code on JVMs
 without coroutines.
 
 %package javadoc
-
+Group: Documentation
 Summary: Javadoc for %{name}
 Requires: jpackage-utils
 
@@ -58,11 +58,8 @@ install -pm 644 pom.xml  %{buildroot}%{_mavenpomdir}/JPP-%{name}.pom
 mkdir -p %{buildroot}%{_javadocdir}/%{name}
 cp -rp target/site/apidocs/* %{buildroot}%{_javadocdir}/%{name}
 
-%files
+%files -f .mfiles
 %doc LICENSE
-%{_javadir}/%{name}.jar
-%{_mavenpomdir}/JPP-%{name}.pom
-%{_mavendepmapfragdir}/%{name}
 
 %files javadoc
 %doc LICENSE
@@ -70,6 +67,15 @@ cp -rp target/site/apidocs/* %{buildroot}%{_javadocdir}/%{name}
 
 
 %changelog
+* Fri Jun 27 2014 Yaakov Selkowitz <yselkowi@redhat.com> - 1.0-0.7.e55ca83git
+- Fix FTBFS due to XMvn changes in F21 (#1106085)
+
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0-0.6.e55ca83git
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Fri Mar 28 2014 Michael Simacek <msimacek@redhat.com> - 1.0-0.5.e55ca83git
+- Use Requires: java-headless rebuild (#1067528)
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0-0.4.e55ca83git
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
@@ -85,3 +91,4 @@ cp -rp target/site/apidocs/* %{buildroot}%{_javadocdir}/%{name}
 * Sat Feb 25 2012 gil <gil> 1.0-1.mga2
 + Revision: 214942
 - imported package coro-mock
+
